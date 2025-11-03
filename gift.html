@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Birthday Sovu 💖</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-family: "Poppins", sans-serif;
+    transition: background 0.5s ease;
+  }
+
+  .heart {
+    position: absolute;
+    color: #ff6b81;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.8;
+    z-index: 0;
+  }
+
+  @keyframes floatUp {
+    0% {transform: translateY(100vh) scale(1);opacity:1;}
+    100% {transform: translateY(-10vh) scale(1.5);opacity:0;}
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.95);
+    width: 90%;
+    max-width: 360px;
+    border-radius: 25px;
+    text-align: center;
+    padding: 25px 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+  }
+
+  .balloons {font-size: 40px;animation: bounce 2s ease-in-out infinite;}
+  @keyframes bounce {0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+
+  h1{color:#ff5f6d;font-size:24px;margin-bottom:8px;}
+  h2{color:#444;font-size:18px;margin-bottom:10px;}
+  p{color:#555;font-size:16px;margin:15px 0;line-height:1.5;transition:all .5s ease;}
+  .gift{font-size:55px;margin:20px 0;animation:shake 1.8s infinite;}
+  @keyframes shake{0%,100%{transform:rotate(0);}25%{transform:rotate(5deg);}75%{transform:rotate(-5deg);}}
+
+  .btn {
+    background: linear-gradient(135deg, #ff5f6d, #ffc371);
+    color:white;
+    border:none;
+    padding:12px 22px;
+    border-radius:30px;
+    cursor:pointer;
+    transition:.3s;
+    font-weight:600;
+    font-size:14px;
+  }
+  .btn:hover{transform:scale(1.05);box-shadow:0 4px 10px rgba(0,0,0,.3);}
+
+  @media (max-width:480px){
+    .card{width:92%;padding:20px 15px;}
+    h1{font-size:22px;}
+    p{font-size:15px;}
+    .gift{font-size:50px;}
+  }
+
+  /* Confetti pieces */
+  .confetti {
+    position: fixed;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+    background: var(--color);
+    animation: fall linear forwards;
+  }
+  @keyframes fall {
+    0% {transform: translateY(0) rotate(0);}
+    100% {transform: translateY(100vh) rotate(720deg);}
+  }
+</style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8e19de0b27.mp3?filename=romantic-piano-ambient-11157.mp3" type="audio/mpeg" />
+  </audio>
+
+  <div class="card">
+    <div class="balloons">🎈🎉🎈</div>
+    <h1>Happy Birthday, <span id="name">Sovu</span> 💞</h1>
+    <div class="gift">🎁</div>
+    <h2>From: <span id="from">Om</span> 💌</h2>
+    <p id="message">
+      You’re the melody that makes my heart dance,<br/>
+      and today, it beats only for you 💖<br/>
+      May your day be as sweet as your smile 🌸✨
+    </p>
+    <button class="btn" onclick="celebrate()">Open Your Surprise 🎀</button>
+  </div>
+
+<script>
+  function createHeart(){
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=Math.random()*20+15+"px";
+    heart.style.animationDuration=Math.random()*3+4+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+  }
+  setInterval(createHeart,400);
+
+  const messages=[
+    "You are the reason behind my happiest smiles ❤️",
+    "If I could, I’d gift you all my tomorrows 💫",
+    "Every heartbeat whispers your name, Sovu 💓",
+    "My world shines brighter every time you smile 🌟",
+    "No gift can match the gift of you in my life 💝"
+  ];
+
+  function celebrate(){
+    // change message
+    const randomMsg=messages[Math.floor(Math.random()*messages.length)];
+    document.getElementById("message").innerText=randomMsg;
+    // background flash
+    document.body.style.background="linear-gradient(135deg,#f6d365,#fda085)";
+    setTimeout(()=>{document.body.style.background="linear-gradient(135deg,#ff9a9e,#fad0c4)";},2000);
+    // confetti burst
+    for(let i=0;i<40;i++){
+      const confetti=document.createElement("div");
+      confetti.classList.add("confetti");
+      confetti.style.left=Math.random()*100+"vw";
+      confetti.style.background="hsl("+Math.random()*360+",100%,70%)";
+      confetti.style.animationDuration=1+Math.random()*2+"s";
+      document.body.appendChild(confetti);
+      setTimeout(()=>confetti.remove(),3000);
+    }
+  }
+</script>
+</body>
+</html>
